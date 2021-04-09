@@ -1,0 +1,80 @@
+---
+title: "Introduction"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## farsr: Overview 
+
+This R package was created as an assignment for the Coursera course "Building R Packages". 
+
+It provides R functions that can be used to import, summarize and visualize 'yearly data regarding fatal injuries suffered in motor vehicle traffic crashes' that has been annually published by and publicly available for download from the Fatality Analysis Reporting System (FARS),  which is a nationwide census of US National Highway Traffic Safety Administration (NHTSA). For more information about FARS data, visit the [FARS|NHTSA](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars) website.
+
+
+Two main functions provided in the package are `fars_summarize_years()` and `fars_map_state()`, both of which can directly read in raw fatal traffic crash data from the annual FARS data file(s), by calling the helper functions `fars_read()` and `make_filename()` that are also provided in the package. The `fars_summarize_years()` function lets you read in yearly data of multiple years by calling the helper function `fars_read_years()`, and produces national-level aggregated counts of monthly total fatal crashes as a descriptive statistic of the data on a yearly basis. The `fars_map_state()` function plots annual geographic distribution of FARS fatal crash locations, but only on individual state-level.
+
+
+```{r}
+library(farsr)
+ls("package:farsr")
+```
+
+
+
+## Count FARS Traffic Accidents by Month and Year
+
+To produce the aggregated counts of fatalities by month and year, call `fars_summarize_years()` function and provide a numeric vector of four digit numbers that represents years in the format 'YYYY' as the argument. This will produce a pivot table of the of monthly total values, with rows by month and columns by year: 
+
+```{r}
+setwd(system.file("extdata", "fars_data", package = "farsr"))
+years <- 2013:2015
+fars_summarize_years(years = years)
+```
+
+The FARS data file to be read into R must be put in the current working directory. It should also be noted that the range of years within which FARS data are available to public is from 1975 to present. An invalid value (year) specified in the input, corresponding to either a non-existent data or a file name that does not exist in the given path, will cause a NULL value generated while reading data from file(s), missing value (column) for the invalid year in the output, and a warning message "invalid year: ...". Completely invalid input will cause a "Must group by variables found in `.data`" error in addition to warning messages of "invalid year: ...":
+
+```{r}
+fars_summarize_years(c(1960, 2013, 2014))
+fars_summarize_years(c(1960, 2020))
+```
+
+
+
+
+## Geographic Mapping of Fatal Crash Locations by State
+
+The raw FARS data includes the geographical coordinates of its fatal traffic accident entries. Geographically mapping the FARS location data and visualize the spatial relationships among them can help you gain insight into data that might be missed in its tabular format. 
+
+The `fars_map_state()` function takes two arguments: a FIPS state numeric code and a four-digit year. It plots geographic distribution of locations where FARS fatal crashes occurred in the particular state and year specified in the arguments. The function calls \code{\link[maps]{map}} to draw the map of the state, an outlined polygon selected from the geographical database of USA state, then calls \code{\link[graphics]{points}} function to add the points of geographic mapping to all non NA latitude and longitude coordinates of the read in FARS entries to the state map:
+
+```{r}
+fars_map_state(state.num=36, year=2013)  # New York
+
+pdf(file="2015_STATE06.pdf")
+fars_map_state(06, year=2015)  # California
+dev.off()
+```
+
+Make sure that correct inputs are supplied. Invalid year will result in a "file ... does not exist" error. Invalid \code{state.num}, which has no match in STATE column of FARS data, will cause function to stop execution and result in "invalid STATE number: ..." error. Missing data for the state and year as specified in the arguments will result in a message "no accidents to plot" and a (temporarily) invisible NULL object to be returned:
+
+```{r}
+fars_map_state(state.num=36, year=2021)  
+fars_map_state(state.num=90, year=2013) 
+```
+
+
+
+
+
+
+

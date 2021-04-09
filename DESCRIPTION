@@ -1,0 +1,19 @@
+Package: farsr
+Type: Package
+Title: Summarize and Visulize FARS Data in R
+Version: 0.1.0
+Author: Xueqing Zhang
+Maintainer: Xueqing Zhang <jzhang1080@gmail.com>
+Description: This package provides functions to import, summarize and visulize 
+    the yearly fatal traffic accident data compiled by the US National Highway 
+    Traffic Safety Administration's Fatality Analysis Reporting System (FARS).
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
