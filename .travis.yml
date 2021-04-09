@@ -1,4 +1,5 @@
 language: r
+<<<<<<< HEAD
 
 
 
@@ -17,3 +18,5 @@ language: r
 
 
 
+=======
+>>>>>>> 35e014418b803c0b47accf21a49c290ce0799d71
