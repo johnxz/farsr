@@ -6,7 +6,7 @@
 #' System, exported into a .csv file and compressed in the bz2 format.
 #'
 #' @importFrom readr read_csv
-#' @importFrom dplyr tbl_df
+#' @importFrom dplyr as_tibble
 #'
 #' @param filename A character string or object representing path to files
 #'
@@ -72,8 +72,8 @@ make_filename <- function(year) {
 #' @examples
 #' fars_read_years(c(2013,2014,2015))
 #'
-#' yrs <- 2013:2015
-#' dat_list <- fars_read_years(years=yrs)
+#' years <- 2013:2015
+#' dat_list <- fars_read_years(years=years)
 fars_read_years <- function(years) {
         lapply(years, function(year) {
                 file <- make_filename(year)

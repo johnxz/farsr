@@ -23,8 +23,8 @@ accessible annual FARS data files within the current working directory
 \examples{
 fars_read_years(c(2013,2014,2015))
 
-yrs <- 2013:2015
-dat_list <- fars_read_years(years=yrs)
+years <- 2013:2015
+dat_list <- fars_read_years(years=years)
 }
 \seealso{
 \code{\link{fars_read}} and \code{\link{make_filename}},
