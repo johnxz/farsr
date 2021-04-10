@@ -27,8 +27,8 @@ function lets you count monthly totals of fatal traffic accidents
 on an annual basis.
 }
 \details{
-\href{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
-{See here} for more information about FARS|NHTSA.
+\href{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}{See here}
+for more information about FARS|NHTSA.
 }
 \examples{
 fars_summarize_years(c(2013,2014,2015))
