@@ -52,7 +52,11 @@ The FARS data file to be read into R must be put in the current working director
 
 ```{r}
 fars_summarize_years(c(1960, 2013, 2014))
-fars_summarize_years(c(1960, 2020))
+tryCatch( fars_summarize_years(c(1960, 2020)), error = function(e) {
+  
+  message("An error occurred:\n", e)
+  
+})
 ```
 
 
