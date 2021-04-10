@@ -76,10 +76,6 @@ fars_map_state(06, 2015)  # California
 dev.off()
 ```
 
-```{r}
-fars_map_state(36, 2013)  #New York
-```
-
 Make sure that correct inputs are supplied. Invalid year will result in a "file ... does not exist" error. Invalid \code{state.num}, which has no match in STATE column of FARS data, will cause function to stop execution and result in "invalid STATE number: ..." error. Missing data for the state and year as specified in the arguments will result in a message "no accidents to plot" and a (temporarily) invisible NULL object to be returned:
 
 ```{r}
