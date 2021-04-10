@@ -7,3 +7,5 @@ vehicle traffic crashes’ that has been annually published by and
 publicly available for download from the Fatality Analysis Reporting
 System (FARS), which is a nationwide census of US National Highway
 Traffic Safety Administration (NHTSA).
+
+[![Build Status](https://travis-ci.org/johnxz/farsr.svg?branch=main)](https://travis-ci.org/johnxz/farsr)
