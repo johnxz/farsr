@@ -72,10 +72,10 @@ The `fars_map_state()` function takes two arguments: a FIPS state numeric code a
 
 ```{r}
 pdf(file="2015_STATE06.pdf")
-fars_map_state(06, 2015)  # California
+fars_map_state(state.num=06, year=2015)  # California
 dev.off()
 
-fars_map_state(36, 2015)  #New York
+fars_map_state(state.num=36, year=2015)  #New York
 ```
 
 ```
