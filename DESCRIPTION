@@ -16,9 +16,9 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 Imports: 
-    dplyr
-    maps
-    readr
+    dplyr,
+    maps,
+    readr,
     tidyr
 VignetteBuilder: knitr
 Config/testthat/edition: 3
