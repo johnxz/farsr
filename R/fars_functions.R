@@ -60,6 +60,7 @@ make_filename <- function(year) {
 #'
 #'
 #' @importFrom dplyr mutate select
+#' @importFrom tidyr %>%
 #'
 #' @inheritParams fars_summarize_years
 #'
@@ -102,7 +103,7 @@ fars_read_years <- function(years) {
 #' {See here} for more information about FARS|NHTSA.
 #'
 #' @importFrom dplyr bind_rows group_by summarize
-#' @importFrom tidyr spread
+#' @importFrom tidyr spread %>%
 #'
 #' @param years a numeric vector of four digit numbers represents years
 #'   in the format 'YYYY'

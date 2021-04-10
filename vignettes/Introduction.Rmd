@@ -33,7 +33,7 @@ ls("package:farsr")
 
 ## Count FARS Traffic Accidents by Month and Year
 
-To produce the aggregated counts of fatalities by month and year, call `fars_summarize_years()` function and provide a numeric vector of four digit numbers that represents years in the format 'YYYY' as the argument. This will produce a pivot table of monthly totals, with rows by month and columns by year: 
+To produce the aggregated counts of fatalities by month and year, call `fars_summarize_years()` function and supply a numeric vector of four digit numbers that represents years as the argument. This will produce a pivot table of monthly totals, with rows by month and columns by year: 
 
 ```{r}
 setwd(system.file("extdata", "fars_data", package = "farsr"))
