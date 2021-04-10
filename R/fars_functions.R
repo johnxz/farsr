@@ -44,10 +44,10 @@ fars_read <- function(filename) {
 #' @return A character string representing a file path
 #'
 #' @examples
-#' make_filename(2013)
+#' farsr::make_filename(2013)
 #'
 #' yr <- 2013
-#' file <- make_filename(yr)
+#' file <- farsr::make_filename(yr)
 make_filename <- function(year) {
         year <- as.integer(year)
         sprintf("accident_%d.csv.bz2", year)
