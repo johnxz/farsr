@@ -21,8 +21,9 @@ which reads in fetal traffic accident entries for specified years from
 accessible annual FARS data files within the current working directory
 }
 \examples{
+\dontrun{
 fars_read_years(c(2013,2014,2015))
-
+}
 \dontrun{
 years <- 2013:2015
 dat_list <- fars_read_years(years=years)

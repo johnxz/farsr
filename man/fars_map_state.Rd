@@ -33,9 +33,9 @@ add the points mapping to all non NA coordinates in the data to the
 state map.
 }
 \examples{
-setwd(system.file("extdata", "fars_data", package = "farsr"))
+\dontrun{
 fars_map_state(state.num=36, year=2013) # New York
-
+}
 \dontrun{
 pdf(file="2015_STATE06.pdf")
 fars_map_state(06, year=2015)  # California

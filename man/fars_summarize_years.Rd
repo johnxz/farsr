@@ -31,9 +31,9 @@ on an annual basis.
 for more information about FARS|NHTSA.
 }
 \examples{
-setwd(system.file("extdata", "fars_data", package = "farsr"))
+\dontrun{
 fars_summarize_years(c(2013,2014,2015))
-
+}
 \dontrun{
 yrs <- 2013:2015
 monthly_counts <- fars_summarize_years(years=yrs)
