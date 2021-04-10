@@ -7,10 +7,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
 ```{r, include = FALSE}
+library(farsr)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
+)
+knitr::opts_knit$set(
+  root.dir = system.file("extdata", "fars_data", package = "farsr")
 )
 ```
 
@@ -43,8 +48,6 @@ library(maps)
 To produce the aggregated counts of fatalities by month and year, call `fars_summarize_years()` function and supply a numeric vector of four digit numbers that represents years as the argument. This will produce a pivot table of monthly totals, with rows by month and columns by year: 
 
 ```{r}
-setwd(system.file("extdata", "fars_data", package = "farsr"))
-
 years <- c(2013:2015)  # or a single number, as a vector of length 1
 fars_summarize_years(years = years)
 ```
@@ -52,8 +55,6 @@ fars_summarize_years(years = years)
 The FARS data file to be read into R must be put in the current working directory. It should also be noted that the range of years within which FARS data are available to public is from 1975 to present. An invalid value (year) specified in the input, corresponding to either a non-existent data or a file name that does not exist in the given path, will cause a NULL value generated while reading data from file(s), missing value (column) for the invalid year in the output, and a warning message "invalid year: ...". Completely invalid input will cause a "Must group by variables found in `.data`" error in addition to warning messages of "invalid year: ...":
 
 ```{r}
-setwd(system.file("extdata", "fars_data", package = "farsr"))
-
 fars_summarize_years(c(1960, 2013, 2014))
 tryCatch( fars_summarize_years(c(1960, 2020)), error = function(e) {
   message("An error occurred:\n", e)
@@ -70,19 +71,16 @@ The raw FARS data includes the geographical coordinates of its fatal traffic acc
 The `fars_map_state()` function takes two arguments: a FIPS state numeric code and a four-digit year. It plots geographic distribution of locations where FARS fatal crashes occurred in the particular state and year specified in the arguments. The function calls \code{\link[maps]{map}} to draw the map of the state, an outlined polygon selected from the geographical database of USA state, then calls \code{\link[graphics]{points}} function to add the points of geographic mapping to all non NA latitude and longitude coordinates of the read in FARS entries to the state map:
 
 ```{r}
-setwd(system.file("extdata", "fars_data", package = "farsr"))
-
-fars_map_state(state.num=36, year=2013)  #New York
 pdf(file="2015_STATE06.pdf")
 fars_map_state(06, year=2015)  # California
 dev.off()
+
+fars_map_state(state.num=36, year=2013)  #New York
 ```
 
 Make sure that correct inputs are supplied. Invalid year will result in a "file ... does not exist" error. Invalid \code{state.num}, which has no match in STATE column of FARS data, will cause function to stop execution and result in "invalid STATE number: ..." error. Missing data for the state and year as specified in the arguments will result in a message "no accidents to plot" and a (temporarily) invisible NULL object to be returned:
 
 ```{r}
-setwd(system.file("extdata", "fars_data", package = "farsr"))
-
 tryCatch( fars_map_state(state.num=36, year=2021), error = function(e) {
   message("An error occurred:\n", e)
 })  
