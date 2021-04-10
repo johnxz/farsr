@@ -99,8 +99,8 @@ fars_read_years <- function(years) {
 #' function lets you count monthly totals of fatal traffic accidents
 #' on an annual basis.
 #'
-#' \href{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}
-#' {See here} for more information about FARS|NHTSA.
+#' \href{https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars}{See here}
+#' for more information about FARS|NHTSA.
 #'
 #' @importFrom dplyr bind_rows group_by summarize
 #' @importFrom tidyr spread %>%
@@ -127,7 +127,7 @@ fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
         dplyr::bind_rows(dat_list) %>%
                 dplyr::group_by(year, MONTH) %>%
-                dplyr::summarize(n = n()) %>%
+                dplyr::summarize(n = dplyr::n()) %>%
                 tidyr::spread(year, n)
 }
 
