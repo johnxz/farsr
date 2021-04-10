@@ -15,10 +15,13 @@
 #'   does not exist" error.
 #'
 #' @examples
+#' setwd(system.file("extdata", "fars_data", package = "farsr"))
 #' fars_read("accident_2013.csv")
 #'
+#' \dontrun{
 #' file <- "accident_2013.csv"
 #' data <- fars_read(file)
+#' }
 fars_read <- function(filename) {
         if(!file.exists(filename))
                 stop("file '", filename, "' does not exist")
@@ -73,8 +76,10 @@ make_filename <- function(year) {
 #' @examples
 #' fars_read_years(c(2013,2014,2015))
 #'
+#' \dontrun{
 #' years <- 2013:2015
 #' dat_list <- fars_read_years(years=years)
+#' }
 fars_read_years <- function(years) {
         lapply(years, function(year) {
                 file <- make_filename(year)
@@ -118,10 +123,14 @@ fars_read_years <- function(years) {
 #'
 #' @seealso \code{\link{fars_read_years}} which this function wraps
 #' @examples
+#' setwd(system.file("extdata", "fars_data", package = "farsr"))
 #' fars_summarize_years(c(2013,2014,2015))
 #'
+#' \dontrun{
 #' yrs <- 2013:2015
 #' monthly_counts <- fars_summarize_years(years=yrs)
+#' }
+#'
 #' @export
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
@@ -164,11 +173,14 @@ fars_summarize_years <- function(years) {
 #' @seealso \code{\link{fars_read}} and \code{\link{make_filename}},
 #'   which this function wraps
 #' @examples
+#' setwd(system.file("extdata", "fars_data", package = "farsr"))
 #' fars_map_state(state.num=36, year=2013) # New York
 #'
+#' \dontrun{
 #' pdf(file="2015_STATE06.pdf")
 #' fars_map_state(06, year=2015)  # California
 #' dev.off()
+#' }
 #'
 #' @export
 fars_map_state <- function(state.num, year) {
