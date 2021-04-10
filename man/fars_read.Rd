@@ -24,8 +24,4 @@ System, exported into a .csv file and compressed in the bz2 format.
 \dontrun{
 fars_read("accident_2013.csv")
 }
-\dontrun{
-file <- "accident_2013.csv"
-data <- fars_read(file)
-}
 }

@@ -18,8 +18,7 @@ which constructs paths to annual FARS data files that corresponds to its argumen
 follows a common naming pattern/convention.
 }
 \examples{
-farsr::make_filename(2013)
-
-yr <- 2013
-file <- farsr::make_filename(yr)
+\dontrun{
+make_filename(2013)
+}
 }

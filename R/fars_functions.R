@@ -18,10 +18,6 @@
 #' \dontrun{
 #' fars_read("accident_2013.csv")
 #' }
-#' \dontrun{
-#' file <- "accident_2013.csv"
-#' data <- fars_read(file)
-#' }
 fars_read <- function(filename) {
         if(!file.exists(filename))
                 stop("file '", filename, "' does not exist")
@@ -44,10 +40,9 @@ fars_read <- function(filename) {
 #' @return A character string representing a file path
 #'
 #' @examples
-#' farsr::make_filename(2013)
-#'
-#' yr <- 2013
-#' file <- farsr::make_filename(yr)
+#' \dontrun{
+#' make_filename(2013)
+#' }
 make_filename <- function(year) {
         year <- as.integer(year)
         sprintf("accident_%d.csv.bz2", year)
@@ -76,10 +71,6 @@ make_filename <- function(year) {
 #' @examples
 #' \dontrun{
 #' fars_read_years(c(2013,2014,2015))
-#' }
-#' \dontrun{
-#' years <- 2013:2015
-#' dat_list <- fars_read_years(years=years)
 #' }
 fars_read_years <- function(years) {
         lapply(years, function(year) {
