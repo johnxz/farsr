@@ -27,6 +27,13 @@ Two main functions provided in the package are `fars_summarize_years()` and `far
 ```{r}
 library(farsr)
 ls("package:farsr")
+
+# load dependencies
+library(dplyr)
+library(readr)
+library(tidyr)
+library(maps)
+
 ```
 
 
@@ -36,6 +43,8 @@ ls("package:farsr")
 To produce the aggregated counts of fatalities by month and year, call `fars_summarize_years()` function and supply a numeric vector of four digit numbers that represents years as the argument. This will produce a pivot table of monthly totals, with rows by month and columns by year: 
 
 ```{r}
+library(dplyr)
+li
 setwd(system.file("extdata", "fars_data", package = "farsr"))
 years <- c(2013:2015)  # or a single number, as a vector of length 1
 fars_summarize_years(years = years)
